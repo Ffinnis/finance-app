@@ -9,6 +9,9 @@ export const useDealsStore = defineStore('dealsStore', {
     getters: {
         getCostsList(state) {
             return state.costsList
+        },
+        getCategoryCostsList(state) {
+            return state.categoryCostsList
         }
     },
     actions: {
