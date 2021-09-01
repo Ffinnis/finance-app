@@ -4,7 +4,9 @@ import {dealTypes, categoryDealTypes} from "../interfaces/dealTypes.interface";
 export const useDealsStore = defineStore('dealsStore', {
     state: () => ({
         costsList: Array<dealTypes>(),
-        categoryCostsList: Array<categoryDealTypes>()
+        categoryCostsList: Array<categoryDealTypes>(),
+        categoryIncomeList: Array<categoryDealTypes>(),
+        incomeList: Array<dealTypes>(),
     }),
     getters: {
         getCostsList(state) {
@@ -12,6 +14,12 @@ export const useDealsStore = defineStore('dealsStore', {
         },
         getCategoryCostsList(state) {
             return state.categoryCostsList
+        },
+        getIncomeList(state) {
+            return state.incomeList
+        },
+        getCategoryIncomeList(state) {
+            return state.categoryIncomeList
         }
     },
     actions: {
@@ -55,6 +63,37 @@ export const useDealsStore = defineStore('dealsStore', {
                     name: 'Парфюмерия и косметика'
                 }
             ]
-        }
+            this.categoryIncomeList = [
+                {
+                    id: 0,
+                    name: 'Зарплата'
+                },
+                {
+                    id: 1,
+                    name: 'Подарки'
+                },
+                {
+                    id: 2,
+                    name: 'Лотерея'
+                },
+                {
+                    id: 3,
+                    name: 'Инвестиции'
+                },
+                {
+                    id: 4,
+                    name: 'Бизнес'
+                },
+            ]
+        },
+        addIncome(id: number, date: string, name: string, amount: number, category: categoryDealTypes) {
+            this.incomeList.push({
+                id: id,
+                date: date,
+                name: name,
+                amount: amount,
+                category: category
+            })
+        },
     }
 })

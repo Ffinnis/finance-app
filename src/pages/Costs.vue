@@ -1,8 +1,8 @@
 <template>
     <h1>Costs</h1>
     <FilterComponent />
-    <NewDealComponent />
-    <DealListComponent />
+    <NewDealComponent type="costs"/>
+    <DealListComponent type="costs"/>
 </template>
 
 <script>

@@ -2,9 +2,10 @@
   "name": "finance-app",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "serve": "vite preview",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "test": "vue-cli-service test:unit",
+    "dev": "vite"
   },
   "dependencies": {
     "pinia": "^2.0.0-rc.6",

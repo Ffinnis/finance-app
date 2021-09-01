@@ -3,7 +3,7 @@
         Создать новую транзакцию
     </button>
     <div v-if="popupHandler" class="popup-transaction">
-        <TransactionPopupComponent />
+        <TransactionPopupComponent :type="type"/>
         <div @click="popupChanger" class="close-popup">
             X
         </div>
@@ -18,12 +18,14 @@
     export default {
         name: "NewDealComponent",
         components: {TransactionPopupComponent},
+        props: {
+            type: String
+        },
         setup() {
-            const popupHandler = ref(true)
+            const popupHandler = ref(false)
 
             const popupChanger = () => {
                 popupHandler.value = !popupHandler.value
-                document.body.style.overflow = "hidden"
             }
 
             return {
@@ -38,6 +40,8 @@
         position: absolute;
         cursor: pointer;
         z-index: 21;
+        top: -170px;
+        left: -150px;
     }
     .popup-transaction{
         position: fixed;

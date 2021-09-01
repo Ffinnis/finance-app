@@ -1,27 +1,49 @@
 <template>
-    <ul v-if="dealListLength > 0">
-        <li>
-
+    <ul>
+        <li v-if="type === 'costs'" v-for="cost in dealStore.getCostsList" :key="cost.id">
+            <h3>
+                Название: {{cost.name}}
+            </h3>
+            <p>
+                Дата: {{cost.date}}
+            </p>
+            <p>
+                Сумма: {{cost.amount}}
+            </p>
+            <p>
+                Категория: {{cost.category.name}}
+            </p>
+        </li>
+        <li v-else v-for="income in dealStore.getIncomeList" :key="income.id">
+            <h3>
+                Название: {{income.name}}
+            </h3>
+            <p>
+                Дата: {{income.date}}
+            </p>
+            <p>
+                Сумма: {{income.amount}}
+            </p>
+            <p>
+                Категория: {{income.category.name}}
+            </p>
         </li>
     </ul>
-    <h4 v-else>
-        Вы не добавили никаких затрат, чтобы добавить нажмите на кнопку "Создать новую транзакцию"
-    </h4>
 </template>
 
 <script>
     import {useDealsStore} from "../store/dealsStore";
-    import {computed} from "vue";
 
     export default {
         name: "DealListComponent",
-        setup() {
+        props: {
+            type: String,
+        },
+        setup(props) {
             const dealStore = useDealsStore()
 
-            const dealListLength = computed(() => dealStore.getCostsList.length)
-
             return {
-                dealListLength
+                dealStore
             }
         }
     }
