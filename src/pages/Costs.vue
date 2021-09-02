@@ -1,17 +1,27 @@
 <template>
-    <h1>Costs</h1>
-    <FilterComponent />
-    <NewDealComponent type="costs"/>
-    <DealListComponent type="costs"/>
+    <div class="container">
+        <h1>Ваши расходы</h1>
+        <FilterComponent />
+        <NewDealComponent type="costs"/>
+        <DealListComponent v-show="dealStore.getCostsListLength > 0" type="costs"/>
+    </div>
 </template>
 
 <script>
-    import FilterComponent from "../components/FilterComponent.vue";
-    import DealListComponent from "../components/DealListComponent.vue";
-    import NewDealComponent from "../components/NewDealComponent.vue";
+    import FilterComponent from "@/components/FilterComponent.vue";
+    import DealListComponent from "@/components/DealListComponent.vue";
+    import NewDealComponent from "@/components/NewDealComponent.vue";
+    import {useDealsStore} from "@store/dealsStore";
     export default {
         name: "Costs",
-        components: {NewDealComponent, DealListComponent, FilterComponent}
+        components: {NewDealComponent, DealListComponent, FilterComponent},
+        setup() {
+            const dealStore = useDealsStore()
+
+            return {
+                dealStore
+            }
+        }
     }
 </script>
 

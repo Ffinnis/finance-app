@@ -1,6 +1,8 @@
 <template>
-    <label for="filter-name"></label>
-    <input id="filter-name" v-model="filterName" placeholder="Введите название транзакции" type="text">
+    <div class="name-filter">
+        <label for="filter-name"></label>
+        <input id="filter-name" v-model="filterName" placeholder="Введите название транзакции" type="text">
+    </div>
 </template>
 
 <script>

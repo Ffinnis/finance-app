@@ -20,6 +20,12 @@ export const useDealsStore = defineStore('dealsStore', {
         },
         getCategoryIncomeList(state) {
             return state.categoryIncomeList
+        },
+        getCostsListLength(state) {
+            return state.costsList.length
+        },
+        getIncomeListLength(state) {
+            return state.incomeList.length
         }
     },
     actions: {
@@ -95,5 +101,17 @@ export const useDealsStore = defineStore('dealsStore', {
                 category: category
             })
         },
+        addCostsCategory(id: number, name: string): void {
+            this.categoryCostsList.push({
+                id: id,
+                name: name
+            })
+        },
+        addIncomeCategory(id: number, name: string): void {
+            this.categoryIncomeList.push({
+                id: id,
+                name: name
+            })
+        }
     }
 })

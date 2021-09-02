@@ -4,7 +4,8 @@
             Новая транзакция
         </h3>
         <div class="inputs">
-            <label for="category">Категории</label><select v-model="categoryValue" name="category" id="category">
+            <div class="top">
+                <label for="category">Категории</label><select v-model="categoryValue" name="category" id="category">
                 <option v-if="type === 'costs'" v-for="category in costsCategories" :key="category.id" :value="category.id">
                     {{category.name}}
                 </option>
@@ -13,6 +14,8 @@
                     {{category.name}}
                 </option>
             </select>
+                <button @click="popupChangerCategory">Создать новую категорию</button>
+            </div>
             <label for="name-input">Введите название операции</label>
             <input v-model="nameValue" id="name-input" name="name" type="text">
             <label v-if="type === 'costs'" for="summary">Введите сумму потраченных средств</label>
@@ -26,14 +29,20 @@
             Добавить
         </button>
     </div>
+    <CategoryPopupComponent v-if="popupHandlerCategory"/>
+    <div v-if="popupHandlerCategory" @click="popupChangerCategory" class="close-popup">
+        X
+    </div>
 </template>
 
 <script>
-    import {useDealsStore} from "../../store/dealsStore";
+    import {useDealsStore} from "@/store/dealsStore";
     import {computed, ref} from "vue";
+    import CategoryPopupComponent from "@/components/Category/CategoryPopupComponent.vue";
 
     export default {
         name: "TransactionPopupComponent",
+        components: {CategoryPopupComponent},
         props: {
             type: String
         },
@@ -64,31 +73,34 @@
                 }
             }
 
+            const popupHandlerCategory = ref(false)
+
+            const popupChangerCategory = () => {
+                popupHandlerCategory.value = !popupHandlerCategory.value
+            }
+
             return {
-                costsCategories, categoryValue, summary, nameValue, addTransaction, incomeCategories, incomeList
+                costsCategories, categoryValue, summary, nameValue, addTransaction, incomeCategories, incomeList, popupHandlerCategory, popupChangerCategory
             }
         }
     }
 </script>
 
 <style scoped>
-    .popup-wrapper{
-        position: fixed;
-        padding: 10px;
-        width: 600px;
-        left: 42%;
-        margin-left: -150px;
-        height: 450px;
-        top: 30%;
-        margin-top: -100px;
-        background: #FFF;
-        z-index: 20;
-        -webkit-box-shadow:  0 0 0 9999px rgba(0, 0, 0, 0.5);
-        box-shadow:  0 0 0 9999px rgba(0, 0, 0, 0.5);
+    .close-popup{
+        position: absolute;
+        cursor: pointer;
+        z-index: 23;
+        top: -170px;
+        left: -150px;
     }
     .inputs{
         display: flex;
         align-items: center;
         flex-direction: column;
+    }
+    .top{
+        display: flex;
+        align-items: center;
     }
 </style>

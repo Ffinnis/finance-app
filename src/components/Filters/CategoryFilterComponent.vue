@@ -9,15 +9,16 @@
     </select>
 </template>
 
-<script>
-    import {useDealsStore} from "../../store/dealsStore";
+<script lang="ts">
+    import {useDealsStore} from "@/store/dealsStore";
     import { computed } from 'vue'
+    import { categoryDealTypes } from "../../interfaces/dealTypes.interface";
     export default {
         name: "CategoryFilterComponent",
         setup() {
             const DealStore = useDealsStore()
 
-            const costsCategories = computed(() => DealStore.getCategoryCostsList)
+            const costsCategories = computed((): categoryDealTypes => DealStore.getCategoryCostsList)
 
             return{
                 costsCategories

@@ -1,17 +1,18 @@
 <template>
-    <button @click="popupChanger">
-        Создать новую транзакцию
-    </button>
-    <div v-if="popupHandler" class="popup-transaction">
-        <TransactionPopupComponent :type="type"/>
-        <div @click="popupChanger" class="close-popup">
-            X
+    <div class="new-deal">
+        <button @click="popupChanger">
+            Создать новую транзакцию
+        </button>
+        <div v-if="popupHandler" class="popup-transaction">
+            <TransactionPopupComponent :type="type"/>
+            <div @click="popupChanger" class="close-popup">
+                X
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {useDealsStore} from "../store/dealsStore";
     import TransactionPopupComponent from "./Transaction/TransactionPopupComponent.vue";
     import {ref} from "vue";
 
@@ -75,5 +76,8 @@
         right: 0;
         background: #FFF;
         z-index: -1;
+    }
+    .new-deal{
+        margin: 0 0 20px;
     }
 </style>

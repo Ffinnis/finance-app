@@ -1,7 +1,9 @@
 <template>
-    <NameFilterComponent />
-    <SortFilterComponent />
-    <CategoryFilterComponent />
+    <div class="filters">
+        <NameFilterComponent />
+        <SortFilterComponent />
+        <CategoryFilterComponent />
+    </div>
 </template>
 
 <script>
@@ -16,5 +18,11 @@
 </script>
 
 <style scoped>
-
+    .filters{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;;
+        max-width: 800px;
+        margin: 10px auto;
+    }
 </style>
