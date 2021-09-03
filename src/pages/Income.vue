@@ -1,6 +1,6 @@
 <template>
     <h1>Ваши доходы</h1>
-    <FilterComponent />
+    <FilterComponent type="income"/>
     <NewDealComponent type="income"/>
     <DealListComponent v-show="dealStore.getIncomeListLength > 0" type="income"/>
 </template>

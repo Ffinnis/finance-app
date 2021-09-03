@@ -14,7 +14,8 @@
 
 <script>
     import TransactionPopupComponent from "./Transaction/TransactionPopupComponent.vue";
-    import {ref} from "vue";
+    import {ref, watch, computed} from "vue";
+    import {useDealsStore} from "@/store/dealsStore";
 
     export default {
         name: "NewDealComponent",
@@ -23,11 +24,28 @@
             type: String
         },
         setup() {
+            const dealStore = useDealsStore()
             const popupHandler = ref(false)
 
             const popupChanger = () => {
                 popupHandler.value = !popupHandler.value
             }
+
+            const costsList = computed(() => dealStore.getCostsList)
+            const incomeList = computed(() => dealStore.getIncomeList)
+            const categoryCostsList = computed(() => dealStore.getCategoryCostsList)
+            const categoryIncomeList = computed(() => dealStore.getCategoryIncomeList)
+            const countCosts = computed(() => dealStore.getCountCosts)
+            const countIncome = computed(() => dealStore.getCountIncome)
+
+            watch([costsList.value, incomeList.value, categoryCostsList.value, categoryIncomeList.value], ([costsList, incomeList, categoryCostsList, categoryIncomeList]) => {
+                localStorage.setItem("costsList", JSON.stringify(costsList))
+                localStorage.setItem("incomeList", JSON.stringify(incomeList))
+                localStorage.setItem("categoryCostsList", JSON.stringify(categoryCostsList))
+                localStorage.setItem("categoryIncomeList", JSON.stringify(categoryIncomeList))
+                localStorage.setItem("countCosts", countCosts.value)
+                localStorage.setItem("incomeCosts", countIncome.value)
+            })
 
             return {
                 popupHandler,popupChanger

@@ -7,6 +7,8 @@ export const useDealsStore = defineStore('dealsStore', {
         categoryCostsList: Array<categoryDealTypes>(),
         categoryIncomeList: Array<categoryDealTypes>(),
         incomeList: Array<dealTypes>(),
+        countCosts: 0,
+        countIncome: 0
     }),
     getters: {
         getCostsList(state) {
@@ -26,18 +28,15 @@ export const useDealsStore = defineStore('dealsStore', {
         },
         getIncomeListLength(state) {
             return state.incomeList.length
+        },
+        getCountCosts(state) {
+            return state.countCosts
+        },
+        getCountIncome(state) {
+            return state.countIncome
         }
     },
     actions: {
-        addCost(id: number, date: string, name: string, amount: number, category: categoryDealTypes) {
-            this.costsList.push({
-                id: id,
-                date: date,
-                name: name,
-                amount: amount,
-                category: category
-            })
-        },
         setCategoryList() {
             this.categoryCostsList = [
                 {
@@ -92,6 +91,16 @@ export const useDealsStore = defineStore('dealsStore', {
                 },
             ]
         },
+
+        addCost(id: number, date: string, name: string, amount: number, category: categoryDealTypes) {
+            this.costsList.push({
+                id: id,
+                date: date,
+                name: name,
+                amount: amount,
+                category: category
+            })
+        },
         addIncome(id: number, date: string, name: string, amount: number, category: categoryDealTypes) {
             this.incomeList.push({
                 id: id,
@@ -112,6 +121,38 @@ export const useDealsStore = defineStore('dealsStore', {
                 id: id,
                 name: name
             })
-        }
+        },
+        addCountCosts() {
+            this.countCosts++
+        },
+        addCountIncome() {
+            this.countIncome++
+        },
+
+        deleteCost(id: number) {
+            this.costsList.splice(id,1)
+        },
+        deleteIncome(id: number) {
+            this.incomeList.splice(id,1)
+        },
+
+        loadCostsList(arr: Array<dealTypes>) {
+            this.costsList = arr
+        },
+        loadIncomeList(arr: Array<dealTypes>) {
+            this.incomeList = arr
+        },
+        loadCategoryCostsList(arr: Array<dealTypes>) {
+            this.categoryCostsList = arr
+        },
+        loadCategoryIncomeList(arr: Array<dealTypes>) {
+            this.categoryIncomeList = arr
+        },
+        loadCountCosts(num: number) {
+            this.countCosts = num
+        },
+        loadIncomeCosts(num: number) {
+            this.countIncome = num
+        },
     }
 })

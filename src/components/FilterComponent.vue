@@ -2,7 +2,7 @@
     <div class="filters">
         <NameFilterComponent />
         <SortFilterComponent />
-        <CategoryFilterComponent />
+        <CategoryFilterComponent :type="type"/>
     </div>
 </template>
 
@@ -13,6 +13,9 @@
     import CategoryFilterComponent from "./Filters/CategoryFilterComponent.vue";
     export default {
         name: "FilterComponent",
+        props: {
+            type: String
+        },
         components: {CategoryFilterComponent, SortFilterComponent, NameFilterComponent},
     }
 </script>

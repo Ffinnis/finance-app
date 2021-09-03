@@ -67,9 +67,11 @@
 
             const addTransaction = (type) => {
                 if(type === 'costs') {
-                    DealStore.addCost(costsList.value, today, nameValue.value, summary.value, costsCategories.value[categoryValue.value])
+                    DealStore.addCost(DealStore.getCountCosts, today, nameValue.value, summary.value, costsCategories.value[categoryValue.value])
+                    DealStore.addCountCosts()
                 } else {
-                    DealStore.addIncome(incomeList.value, today, nameValue.value, summary.value, incomeCategories.value[categoryValue.value])
+                    DealStore.addIncome(DealStore.getCountIncome, today, nameValue.value, summary.value, incomeCategories.value[categoryValue.value])
+                    DealStore.addCountIncome()
                 }
             }
 

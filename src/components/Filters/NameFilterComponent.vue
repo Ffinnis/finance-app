@@ -12,9 +12,6 @@
         name: "NameFilterComponent",
         setup() {
             const filterName = ref('')
-            const dealStore = useDealsStore()
-
-            console.log(dealStore.costsList)
 
             return {
                 filterName

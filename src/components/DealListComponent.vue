@@ -31,6 +31,12 @@
                 <td>
                     {{cost.date}}
                 </td>
+                <td>
+                    <label @click="deleteTransaction('costs', cost.id)" class="delete">
+                        Удалить
+                        <input class="input-delete" type="text">
+                    </label>
+                </td>
             </tr>
             <tr v-else v-for="income in dealStore.getIncomeList" :key="income.id">
                 <th>
@@ -45,13 +51,16 @@
                 <td>
                     {{income.date}}
                 </td>
+                <td>
+
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 </template>
 
-<script>
+<script lang="ts">
     import {useDealsStore} from "@/store/dealsStore";
 
     export default {
@@ -59,13 +68,20 @@
         props: {
             type: String,
         },
-        setup(props) {
+        setup() {
             const dealStore = useDealsStore()
 
-
+            const deleteTransaction = (type: string, id: number): void => {
+                if (type === 'costs') {
+                    dealStore.deleteCost(id)
+                }
+                if (type === 'income') {
+                    dealStore.deleteIncome(id)
+                }
+            }
 
             return {
-                dealStore
+                dealStore, deleteTransaction
             }
         }
     }
@@ -85,5 +101,12 @@
     }
     tbody tr{
         border: 20px solid transparent;
+    }
+    .delete{
+        cursor: pointer;
+        color: red
+    }
+    .input-delete{
+        display: none
     }
 </style>
