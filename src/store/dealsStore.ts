@@ -130,10 +130,18 @@ export const useDealsStore = defineStore('dealsStore', {
         },
 
         deleteCost(id: number) {
-            this.costsList.splice(id,1)
+            this.costsList.find(cost => {
+                if (cost.id === id) {
+                    this.costsList.splice(this.costsList.indexOf(cost), 1)
+                }
+            })
         },
         deleteIncome(id: number) {
-            this.incomeList.splice(id,1)
+            this.incomeList.find(income => {
+                if (income.id === id) {
+                    this.incomeList.splice(this.incomeList.indexOf(income), 1)
+                }
+            })
         },
 
         loadCostsList(arr: Array<dealTypes>) {
@@ -151,7 +159,7 @@ export const useDealsStore = defineStore('dealsStore', {
         loadCountCosts(num: number) {
             this.countCosts = num
         },
-        loadIncomeCosts(num: number) {
+        loadCountIncome(num: number) {
             this.countIncome = num
         },
     }

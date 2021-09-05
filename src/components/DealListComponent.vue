@@ -32,10 +32,9 @@
                     {{cost.date}}
                 </td>
                 <td>
-                    <label @click="deleteTransaction('costs', cost.id)" class="delete">
+                    <button class="delete" @click="deleteTransaction('costs', cost.id)">
                         Удалить
-                        <input class="input-delete" type="text">
-                    </label>
+                    </button>
                 </td>
             </tr>
             <tr v-else v-for="income in dealStore.getIncomeList" :key="income.id">
@@ -52,7 +51,9 @@
                     {{income.date}}
                 </td>
                 <td>
-
+                    <button class="delete" @click="deleteTransaction('income', income.id)">
+                        Удалить
+                    </button>
                 </td>
             </tr>
             </tbody>

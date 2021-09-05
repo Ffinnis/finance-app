@@ -1,3 +1,4 @@
+
 <template>
     <div class="popup-wrapper">
         <h3>Создать новую категорию</h3>

@@ -1,38 +1,12 @@
 <script>
   import NavigationComponent from "./components/NavigationComponent.vue";
   import { onMounted } from 'vue'
-  import {useDealsStore} from "./store/dealsStore";
+  import {loaded} from '@/scripts/loaded.ts'
   export default {
     components: {NavigationComponent},
     setup() {
-      const dealStore = useDealsStore()
-
       onMounted(() => {
-        dealStore.setCategoryList()
-        const costsList = JSON.parse(localStorage.getItem("costsList"))
-        const incomeList = JSON.parse(localStorage.getItem("incomeList"))
-        const categoryIncomeList = JSON.parse(localStorage.getItem("categoryIncomeList"))
-        const categoryCostsList = JSON.parse(localStorage.getItem("categoryCostsList"))
-        const countCosts = localStorage.getItem("countCosts")
-        const countIncome = localStorage.getItem("countIncome")
-        if (costsList?.length > 0) {
-          dealStore.loadCostsList(costsList)
-        }
-        if (incomeList?.length > 0) {
-          dealStore.loadIncomeList(incomeList)
-        }
-        if (categoryIncomeList?.length > 0) {
-          dealStore.loadCategoryIncomeList(categoryIncomeList)
-        }
-        if (categoryCostsList?.length > 0) {
-          dealStore.loadCategoryCostsList(categoryCostsList)
-        }
-        if (countCosts) {
-          dealStore.loadCountCosts(parseInt(countCosts))
-        }
-        if (countIncome) {
-          dealStore.loadCountIncome(parseInt(countIncome))
-        }
+        loaded()
       })
     }
   }
