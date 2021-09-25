@@ -1,16 +1,18 @@
 <template>
-    <p>
-        Привет, это приложение созданно для того, <br> чтобы помочь тебе вести финансовую деятельность
-    </p>
-    <p>
-        Для начала введить свой текущий баланс:
-    </p>
-    <label>
-        <input v-model="inputBalance" type="number">
-    </label>
-    <button @click="submitBalance">
-        Подтвердить
-    </button>
+    <div class="step">
+        <p>
+            Привет, это приложение созданно для того, <br> чтобы помочь тебе вести финансовую деятельность
+        </p>
+        <p>
+            Для начала введить свой текущий баланс:
+        </p>
+        <label>
+            <input v-model="inputBalance" type="number">
+        </label>
+        <button class="primary-btn" @click="submitBalance">
+            Подтвердить
+        </button>
+    </div>
 </template>
 
 <script>
@@ -28,6 +30,7 @@
                 balanceStore.setBalance(inputBalance.value)
                 stepStore.setStepOne(true)
                 localStorage.setItem("stepOne", 'true')
+                localStorage.setItem("userBalance", JSON.stringify(inputBalance.value))
             }
 
             return {
@@ -38,5 +41,16 @@
 </script>
 
 <style scoped>
-
+    p{
+        margin: 15px 0;
+    }
+    input{
+        padding: 7px;
+        margin: 0 0 10px;
+    }
+    .step{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 </style>

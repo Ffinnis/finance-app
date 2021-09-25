@@ -1,9 +1,11 @@
 import {useDealsStore} from "@/store/dealsStore";
 import {useStepStore} from '@store/stepStore'
+import {useBalanceStore} from "@/store/balanceStore";
 
 export function loaded() {
     const dealStore = useDealsStore()
     const stepStore = useStepStore()
+    const balanceStore = useBalanceStore()
     dealStore.setCategoryList()
     const costsList = JSON.parse(<string>localStorage.getItem("costsList"))
     const incomeList = JSON.parse(<string>localStorage.getItem("incomeList"))
@@ -12,6 +14,8 @@ export function loaded() {
     const countCosts = localStorage.getItem("countCosts")
     const countIncome = localStorage.getItem("countIncome")
     const stepOne = localStorage.getItem("stepOne")
+    const stepTwo = localStorage.getItem("stepTwo")
+    const userBalance = localStorage.getItem("userBalance")
     if (costsList?.length > 0) {
         dealStore.loadCostsList(costsList)
     }
@@ -33,5 +37,12 @@ export function loaded() {
     if (stepOne) {
         const step = !!stepOne
         stepStore.loadStepOne(step)
+    }
+    if (stepTwo) {
+        const step = !!stepTwo
+        stepStore.loadStepTwo(step)
+    }
+    if (userBalance) {
+        balanceStore.setBalance(parseInt(userBalance))
     }
 }

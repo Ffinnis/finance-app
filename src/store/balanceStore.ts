@@ -12,6 +12,12 @@ export const useBalanceStore = defineStore('useBalanceStore', {
     actions: {
         setBalance(number: number): number {
             return this.balance = number
+        },
+        addBalance(amount: number): number {
+            return this.balance += amount;
+        },
+        removeBalance(amount: number): number {
+            return this.balance -= amount;
         }
     }
 })

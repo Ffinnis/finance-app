@@ -32,12 +32,12 @@
                     {{cost.date}}
                 </td>
                 <td>
-                    <button class="delete" @click="deleteTransaction('costs', cost.id)">
+                    <button class="delete" @click="deleteTransaction('costs', cost.id, cost.amount)">
                         Удалить
                     </button>
                 </td>
             </tr>
-            <tr v-else v-for="income in dealStore.getIncomeList" :key="income.id">
+            <tr v-if="type === 'income'" v-for="income in dealStore.getIncomeList" :key="income.id">
                 <th>
                     {{income.name}}
                 </th>
@@ -51,7 +51,7 @@
                     {{income.date}}
                 </td>
                 <td>
-                    <button class="delete" @click="deleteTransaction('income', income.id)">
+                    <button class="delete" @click="deleteTransaction('income', income.id, income.amount)">
                         Удалить
                     </button>
                 </td>
@@ -62,7 +62,8 @@
 </template>
 
 <script lang="ts">
-    import {useDealsStore} from "@/store/dealsStore";
+    import {useDealsStore} from "../store/dealsStore";
+    import {useBalanceStore} from "../store/balanceStore";
 
     export default {
         name: "DealListComponent",
@@ -71,15 +72,20 @@
         },
         setup() {
             const dealStore = useDealsStore()
+            const balanceStore = useBalanceStore()
 
-            const deleteTransaction = (type: string, id: number): void => {
+            const deleteTransaction = (type: string, id: number, amount: number): void => {
                 if (type === 'costs') {
                     dealStore.deleteCost(id)
+                    balanceStore.addBalance(amount)
                 }
                 if (type === 'income') {
                     dealStore.deleteIncome(id)
+                    balanceStore.removeBalance(amount)
                 }
             }
+
+            const incomeList = dealStore.getIncomeList
 
             return {
                 dealStore, deleteTransaction

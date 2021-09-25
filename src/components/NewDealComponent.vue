@@ -1,6 +1,6 @@
 <template>
     <div class="new-deal">
-        <button @click="popupChanger">
+        <button class="primary-btn" @click="popupChanger">
             Создать новую транзакцию
         </button>
         <div v-if="popupHandler" class="popup-transaction">
@@ -16,6 +16,7 @@
     import TransactionPopupComponent from "./Transaction/TransactionPopupComponent.vue";
     import {ref, watch, computed} from "vue";
     import {useDealsStore} from "@/store/dealsStore";
+    import {useBalanceStore} from "@/store/balanceStore";
 
     export default {
         name: "NewDealComponent",
@@ -25,10 +26,14 @@
         },
         setup() {
             const dealStore = useDealsStore()
+            const balanceStore = useBalanceStore()
             const popupHandler = ref(false)
+            const popupClass = ref('')
 
             const popupChanger = () => {
-                popupHandler.value = !popupHandler.value
+                setTimeout(() => {
+                    popupHandler.value = !popupHandler.value
+                }, 800)
             }
 
             const costsList = computed(() => dealStore.getCostsList)
@@ -37,18 +42,20 @@
             const categoryIncomeList = computed(() => dealStore.getCategoryIncomeList)
             const countCosts = computed(() => dealStore.getCountCosts)
             const countIncome = computed(() => dealStore.getCountIncome)
+            const userBalance = computed(() => balanceStore.getBalance)
 
-            watch([costsList.value, incomeList.value, categoryCostsList.value, categoryIncomeList.value], ([costsList, incomeList, categoryCostsList, categoryIncomeList]) => {
+            watch([costsList.value, incomeList.value, categoryCostsList.value, categoryIncomeList.value, userBalance], ([costsList, incomeList, categoryCostsList, categoryIncomeList, userBalance]) => {
                 localStorage.setItem("costsList", JSON.stringify(costsList))
                 localStorage.setItem("incomeList", JSON.stringify(incomeList))
                 localStorage.setItem("categoryCostsList", JSON.stringify(categoryCostsList))
                 localStorage.setItem("categoryIncomeList", JSON.stringify(categoryIncomeList))
                 localStorage.setItem("countCosts", countCosts.value)
-                localStorage.setItem("incomeCosts", countIncome.value)
+                localStorage.setItem("countIncome", countIncome.value)
+                localStorage.setItem("userBalance", JSON.stringify(userBalance))
             })
 
             return {
-                popupHandler,popupChanger
+                popupHandler,popupChanger, popupClass
             }
         }
     }
@@ -59,43 +66,22 @@
         position: absolute;
         cursor: pointer;
         z-index: 21;
-        top: -170px;
-        left: -150px;
-    }
-    .popup-transaction{
-        position: fixed;
-        padding: 10px;
-        width: 280px;
-        left: 50%;
-        margin-left: -150px;
-        height: 180px;
-        top: 50%;
-        margin-top: -100px;
-        background: #FFF;
-        z-index: 20;
-    }
-    .popup-transaction:after {
-        position: fixed;
-        content: "";
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: rgba(0,0,0,0.5);
-        z-index: -2;
-    }
-
-    .popup-transaction:before {
-        position: absolute;
-        content: "";
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: #FFF;
-        z-index: -1;
+        top: -9000px;
+        left: 415px;
+        animation-name: showPopup;
+        animation-duration: 0.5s;
+        animation-delay: 100ms;
+        animation-fill-mode: both;
     }
     .new-deal{
         margin: 0 0 20px;
+    }
+    @keyframes showPopup {
+        from{
+            top: -9000px;
+        }
+        to{
+            top: 75px
+        }
     }
 </style>
