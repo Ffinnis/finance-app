@@ -8,10 +8,7 @@
                 <div class="select-category">
                     <label for="category">Категория</label>
                     <select class="category-transaction" v-model="categoryValue" name="category" id="category">
-                        <option v-if="type === 'costs'" v-for="category in costsCategories" :key="category.id" :value="category.id">
-                            {{category.name}}
-                        </option>
-                        <option v-else v-for="category in incomeCategories" :key="category.id" :value="category.id">
+                        <option v-for="category in categoryList" :key="category.id" :value="category.id">
                             {{category.name}}
                         </option>
                     </select>
@@ -57,9 +54,13 @@
             const nameValue = ref('')
             const summary = ref(0)
 
-            const costsCategories = computed(() => DealStore.categoryCostsList)
+            const categoryList = computed(() => {
+                if(props.type === 'income') {
+                    return DealStore.categoryIncomeList
+                }
+                return DealStore.categoryCostsList
+            })
 
-            const incomeCategories = computed(() => DealStore.categoryIncomeList)
             const incomeList = computed(() => DealStore.incomeList.length)
 
             let today = new Date()
@@ -71,11 +72,11 @@
 
             const addTransaction = (type) => {
                 if(type === 'costs') {
-                    DealStore.addCost(DealStore.countCosts, today, nameValue.value, summary.value, costsCategories.value[categoryValue.value])
+                    DealStore.addCost(DealStore.countCosts, today, nameValue.value, summary.value, categoryList.value[categoryValue.value])
                     DealStore.addCountCosts()
                     balanceStore.removeBalance(summary.value)
                 } else {
-                    DealStore.addIncome(DealStore.countIncome, today, nameValue.value, summary.value, incomeCategories.value[categoryValue.value])
+                    DealStore.addIncome(DealStore.countIncome, today, nameValue.value, summary.value, categoryList.value[categoryValue.value])
                     DealStore.addCountIncome()
                     balanceStore.addBalance(summary.value)
                 }
@@ -88,7 +89,7 @@
             }
 
             return {
-                costsCategories, categoryValue, summary, nameValue, addTransaction, incomeCategories, incomeList, popupHandlerCategory, popupChangerCategory
+                categoryList, categoryValue, summary, nameValue, addTransaction, incomeList, popupHandlerCategory, popupChangerCategory
             }
         }
     }

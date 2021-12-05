@@ -61,10 +61,8 @@
 
 <style scoped>
     .close-popup{
-        position: absolute;
         cursor: pointer;
         z-index: 21;
-        left: 38%;
         animation-name: showPopup;
         animation-duration: 0.5s;
         animation-fill-mode: both;
@@ -74,10 +72,10 @@
     }
     @keyframes showPopup {
         from{
-            top: -1000px;
+            transform: translate(240px, -1000px)
         }
         to{
-            top: -170px
+            transform: translate(240px, -370px)
         }
     }
     .popup-transaction{
@@ -87,5 +85,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        left: 0;
+        top: 0;
     }
 </style>

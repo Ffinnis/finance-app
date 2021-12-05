@@ -18,26 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-if="type === 'costs'" v-for="cost in dealStore.costsList" :key="cost.id">
-                <th>
-                    {{cost.name}}
-                </th>
-                <td>
-                    {{cost.amount}}
-                </td>
-                <td>
-                    {{cost.category.name}}
-                </td>
-                <td>
-                    {{cost.date}}
-                </td>
-                <td>
-                    <button class="delete" @click="deleteTransaction('costs', cost.id, cost.amount)">
-                        Удалить
-                    </button>
-                </td>
-            </tr>
-            <tr v-if="type === 'income'" v-for="income in dealStore.incomeList" :key="income.id">
+            <tr v-for="income in dealList" :key="income.id">
                 <th>
                     {{income.name}}
                 </th>
@@ -51,7 +32,7 @@
                     {{income.date}}
                 </td>
                 <td>
-                    <button class="delete" @click="deleteTransaction('income', income.id, income.amount)">
+                    <button class="delete" @click="deleteTransaction(currentRoute, income.id, income.amount)">
                         Удалить
                     </button>
                 </td>
@@ -64,15 +45,28 @@
 <script lang="ts">
     import {useDealsStore} from "../store/dealsStore";
     import {useBalanceStore} from "../store/balanceStore";
+    import {useRouter} from "vue-router";
+    import {computed} from 'vue'
 
     export default {
         name: "DealListComponent",
         props: {
-            type: String,
+            listOfDeal: Array
         },
         setup() {
             const dealStore = useDealsStore()
             const balanceStore = useBalanceStore()
+
+            const router = useRouter()
+            const currentRoute = router.currentRoute.value.path.replace(/[\/\\]/g,'')
+
+            const dealList = computed(() => {
+                if(currentRoute === 'income') {
+                    return dealStore.incomeList
+                }
+                return dealStore.costsList
+            })
+
 
             const deleteTransaction = (type: string, id: number, amount: number): void => {
                 if (type === 'costs') {
@@ -86,7 +80,7 @@
             }
 
             return {
-                dealStore, deleteTransaction
+                dealStore, deleteTransaction, currentRoute, dealList
             }
         }
     }

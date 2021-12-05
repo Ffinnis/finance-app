@@ -5,4 +5,9 @@ import { ViteAliases } from 'vite-aliases'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), ViteAliases()],
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js',
+    },
+  },
 })

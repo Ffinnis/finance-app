@@ -1,6 +1,6 @@
 <template>
     <div class="filters">
-        <NameFilterComponent />
+        <NameFilterComponent :type="type" @filter="filterHandler($event)"/>
         <SortFilterComponent />
         <CategoryFilterComponent :type="type"/>
     </div>
@@ -11,10 +11,22 @@
     import NameFilterComponent from "./Filters/NameFilterComponent.vue";
     import SortFilterComponent from "./Filters/SortFilterComponent.vue";
     import CategoryFilterComponent from "./Filters/CategoryFilterComponent.vue";
+    import {ref} from 'vue'
     export default {
         name: "FilterComponent",
         props: {
             type: String
+        },
+        emits: ['filter'],
+        setup(props, context) {
+          const filteredList = ref([])
+          const filterHandler = (event) => {
+              return context.emit('filter', filteredList.value = event)
+          }
+
+          return {
+              filteredList, filterHandler
+          }
         },
         components: {CategoryFilterComponent, SortFilterComponent, NameFilterComponent},
     }
