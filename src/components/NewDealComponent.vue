@@ -36,13 +36,13 @@
                 }, 800)
             }
 
-            const costsList = computed(() => dealStore.getCostsList)
-            const incomeList = computed(() => dealStore.getIncomeList)
-            const categoryCostsList = computed(() => dealStore.getCategoryCostsList)
-            const categoryIncomeList = computed(() => dealStore.getCategoryIncomeList)
-            const countCosts = computed(() => dealStore.getCountCosts)
-            const countIncome = computed(() => dealStore.getCountIncome)
-            const userBalance = computed(() => balanceStore.getBalance)
+            const costsList = computed(() => dealStore.costsList)
+            const incomeList = computed(() => dealStore.incomeList)
+            const categoryCostsList = computed(() => dealStore.categoryCostsList)
+            const categoryIncomeList = computed(() => dealStore.categoryIncomeList)
+            const countCosts = computed(() => dealStore.countCosts)
+            const countIncome = computed(() => dealStore.countIncome)
+            const userBalance = computed(() => balanceStore.balance)
 
             watch([costsList.value, incomeList.value, categoryCostsList.value, categoryIncomeList.value, userBalance], ([costsList, incomeList, categoryCostsList, categoryIncomeList, userBalance]) => {
                 localStorage.setItem("costsList", JSON.stringify(costsList))

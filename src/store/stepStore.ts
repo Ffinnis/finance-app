@@ -5,14 +5,6 @@ export const useStepStore = defineStore('useStepStore', {
         stepOne: JSON.parse(<string>localStorage.getItem("stepOne")) || false,
         stepTwo: JSON.parse(<string>localStorage.getItem("stepTwo")) || false
     }),
-    getters: {
-       getStepOne: (state): boolean => {
-           return state.stepOne;
-       },
-        getStepTwo: (state): boolean => {
-            return state.stepTwo;
-        }
-    },
     actions: {
         setStepOne(option: boolean): boolean {
             return this.stepOne = option;

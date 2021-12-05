@@ -2,7 +2,7 @@
     <h1>Ваши доходы</h1>
     <FilterComponent type="income"/>
     <NewDealComponent type="income"/>
-    <DealListComponent v-show="dealStore.getIncomeListLength > 0" type="income"/>
+    <DealListComponent v-show="dealStore.incomeList.length > 0" type="income"/>
 </template>
 
 <script>
