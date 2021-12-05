@@ -31,9 +31,7 @@
             const popupClass = ref('')
 
             const popupChanger = () => {
-                setTimeout(() => {
-                    popupHandler.value = !popupHandler.value
-                }, 800)
+                popupHandler.value = !popupHandler.value
             }
 
             const costsList = computed(() => dealStore.costsList)
@@ -66,11 +64,9 @@
         position: absolute;
         cursor: pointer;
         z-index: 21;
-        top: -9000px;
-        left: 415px;
+        left: 38%;
         animation-name: showPopup;
         animation-duration: 0.5s;
-        animation-delay: 100ms;
         animation-fill-mode: both;
     }
     .new-deal{
@@ -78,10 +74,18 @@
     }
     @keyframes showPopup {
         from{
-            top: -9000px;
+            top: -1000px;
         }
         to{
-            top: 75px
+            top: -170px
         }
+    }
+    .popup-transaction{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 </style>

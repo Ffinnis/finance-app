@@ -37,15 +37,12 @@ body{
     position: fixed;
     padding: 45px 100px;
     background: #FFF;
-    top: -9000px;
-    left: 400px;
     z-index: 20;
     -webkit-box-shadow: 0px 8px 18px 0px rgb(34 60 80 / 20%);
     -moz-box-shadow: 0px 8px 18px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 0px 8px 18px 0px;
     animation-name: showPopup;
     animation-duration: 0.5s;
-    animation-delay: 100ms;
     animation-fill-mode: both;
   }
   .popup--close{
