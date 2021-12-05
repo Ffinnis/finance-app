@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useStepStore = defineStore('useStepStore', {
     state: () => ({
-        stepOne: false,
-        stepTwo: false
+        stepOne: JSON.parse(<string>localStorage.getItem("stepOne")) || false,
+        stepTwo: JSON.parse(<string>localStorage.getItem("stepTwo")) || false
     }),
     getters: {
        getStepOne: (state): boolean => {
@@ -17,14 +17,8 @@ export const useStepStore = defineStore('useStepStore', {
         setStepOne(option: boolean): boolean {
             return this.stepOne = option;
         },
-        loadStepOne(option: boolean): boolean {
-            return this.stepOne = option;
-        },
         setStepTwo(option: boolean): boolean {
             return this.stepTwo = option;
         },
-        loadStepTwo(option: boolean): boolean {
-            return this.stepTwo = option;
-        }
     }
 })

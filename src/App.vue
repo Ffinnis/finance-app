@@ -1,14 +1,7 @@
 <script>
   import NavigationComponent from "./components/NavigationComponent.vue";
-  import { onMounted } from 'vue'
-  import {loaded} from '@/scripts/loaded.ts'
   export default {
     components: {NavigationComponent},
-    setup() {
-      onMounted(() => {
-        loaded()
-      })
-    }
   }
 </script>
 
