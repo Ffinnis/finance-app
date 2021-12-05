@@ -18,7 +18,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-if="type === 'costs'" v-for="cost in dealStore.getCostsList" :key="cost.id">
+            <tr v-if="type === 'costs'" v-for="cost in dealStore.costsList" :key="cost.id">
                 <th>
                     {{cost.name}}
                 </th>
@@ -37,7 +37,7 @@
                     </button>
                 </td>
             </tr>
-            <tr v-if="type === 'income'" v-for="income in dealStore.getIncomeList" :key="income.id">
+            <tr v-if="type === 'income'" v-for="income in dealStore.incomeList" :key="income.id">
                 <th>
                     {{income.name}}
                 </th>
@@ -84,8 +84,6 @@
                     balanceStore.removeBalance(amount)
                 }
             }
-
-            const incomeList = dealStore.getIncomeList
 
             return {
                 dealStore, deleteTransaction

@@ -60,32 +60,6 @@ export const useDealsStore = defineStore('dealsStore', {
         countCosts: Number(localStorage.getItem("countCosts")) || 0,
         countIncome: Number(localStorage.getItem("countIncome")) || 0
     }),
-    getters: {
-        getCostsList(state) {
-            return state.costsList
-        },
-        getCategoryCostsList(state) {
-            return state.categoryCostsList
-        },
-        getIncomeList(state) {
-            return state.incomeList
-        },
-        getCategoryIncomeList(state) {
-            return state.categoryIncomeList
-        },
-        getCostsListLength(state) {
-            return state.costsList.length
-        },
-        getIncomeListLength(state) {
-            return state.incomeList.length
-        },
-        getCountCosts(state) {
-            return state.countCosts
-        },
-        getCountIncome(state) {
-            return state.countIncome
-        }
-    },
     actions: {
         addCost(id: number, date: string, name: string, amount: number, category: categoryDealTypes) {
             this.costsList.push({
@@ -137,25 +111,6 @@ export const useDealsStore = defineStore('dealsStore', {
                     this.incomeList.splice(this.incomeList.indexOf(income), 1)
                 }
             })
-        },
-
-        loadCostsList(arr: Array<dealTypes>) {
-            this.costsList = arr
-        },
-        loadIncomeList(arr: Array<dealTypes>) {
-            this.incomeList = arr
-        },
-        loadCategoryCostsList(arr: Array<dealTypes>) {
-            this.categoryCostsList = arr
-        },
-        loadCategoryIncomeList(arr: Array<dealTypes>) {
-            this.categoryIncomeList = arr
-        },
-        loadCountCosts(num: number) {
-            this.countCosts = num
-        },
-        loadCountIncome(num: number) {
-            this.countIncome = num
         },
     }
 })

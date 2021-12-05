@@ -3,7 +3,7 @@
         <h1>Ваши расходы</h1>
         <FilterComponent type="costs"/>
         <NewDealComponent type="costs"/>
-        <DealListComponent v-show="dealStore.getCostsListLength > 0" type="costs"/>
+        <DealListComponent v-show="dealStore.costsList.length > 0" type="costs"/>
     </div>
 </template>
 

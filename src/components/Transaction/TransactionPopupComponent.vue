@@ -57,11 +57,10 @@
             const nameValue = ref('')
             const summary = ref(0)
 
-            const costsCategories = computed(() => DealStore.getCategoryCostsList)
-            const costsList = computed(() => DealStore.getCostsList.length)
+            const costsCategories = computed(() => DealStore.categoryCostsList)
 
-            const incomeCategories = computed(() => DealStore.getCategoryIncomeList)
-            const incomeList = computed(() => DealStore.getIncomeList.length)
+            const incomeCategories = computed(() => DealStore.categoryIncomeList)
+            const incomeList = computed(() => DealStore.incomeList.length)
 
             let today = new Date()
             let dd = String(today.getDate()).padStart(2, '0');
@@ -72,11 +71,11 @@
 
             const addTransaction = (type) => {
                 if(type === 'costs') {
-                    DealStore.addCost(DealStore.getCountCosts, today, nameValue.value, summary.value, costsCategories.value[categoryValue.value])
+                    DealStore.addCost(DealStore.countCosts, today, nameValue.value, summary.value, costsCategories.value[categoryValue.value])
                     DealStore.addCountCosts()
                     balanceStore.removeBalance(summary.value)
                 } else {
-                    DealStore.addIncome(DealStore.getCountIncome, today, nameValue.value, summary.value, incomeCategories.value[categoryValue.value])
+                    DealStore.addIncome(DealStore.countIncome, today, nameValue.value, summary.value, incomeCategories.value[categoryValue.value])
                     DealStore.addCountIncome()
                     balanceStore.addBalance(summary.value)
                 }

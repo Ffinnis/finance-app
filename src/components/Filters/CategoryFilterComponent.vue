@@ -24,8 +24,8 @@
         setup() {
             const DealStore = useDealsStore()
 
-            const costsCategories = computed((): categoryDealTypes => DealStore.getCategoryCostsList)
-            const incomeCategories = computed((): categoryDealTypes => DealStore.getCategoryIncomeList)
+            const costsCategories = computed((): categoryDealTypes => DealStore.categoryCostsList)
+            const incomeCategories = computed((): categoryDealTypes => DealStore.categoryIncomeList)
             return{
                 costsCategories, incomeCategories
             }

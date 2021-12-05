@@ -4,11 +4,6 @@ export const useBalanceStore = defineStore('useBalanceStore', {
     state: () => ({
         balance: Number(localStorage.getItem("userBalance")) || 0
     }),
-    getters: {
-        getBalance(state): number {
-            return Number(state.balance)
-        }
-    },
     actions: {
         setBalance(number: number): number {
             return this.balance = number

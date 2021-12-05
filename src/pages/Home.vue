@@ -5,7 +5,7 @@
         <TheStepTwo v-if="stepStore.stepOne && !stepStore.stepTwo"/>
         <div v-if="stepStore.stepOne && stepStore.stepTwo" class="main">
             <h2>
-                Ваш баланс равен <span class="balance-count">{{balanceStore.getBalance}}₽</span>
+                Ваш баланс равен <span class="balance-count">{{balanceStore.balance}}₽</span>
             </h2>
         </div>
     </div>
