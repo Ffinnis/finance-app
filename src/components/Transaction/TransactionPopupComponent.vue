@@ -71,15 +71,18 @@
             today = mm + '/' + dd + '/' + yyyy;
 
             const addTransaction = (type) => {
-                if(type === 'costs') {
-                    DealStore.addCost(DealStore.countCosts, today, nameValue.value, summary.value, categoryList.value[categoryValue.value])
-                    DealStore.addCountCosts()
-                    balanceStore.removeBalance(summary.value)
-                } else {
-                    DealStore.addIncome(DealStore.countIncome, today, nameValue.value, summary.value, categoryList.value[categoryValue.value])
-                    DealStore.addCountIncome()
-                    balanceStore.addBalance(summary.value)
+                if (nameValue.value !== '') {
+                    if(type === 'costs') {
+                        DealStore.addCost(DealStore.countCosts, today, nameValue.value, summary.value, categoryList.value[categoryValue.value])
+                        DealStore.addCountCosts()
+                        return balanceStore.removeBalance(summary.value)
+                    } else {
+                        DealStore.addIncome(DealStore.countIncome, today, nameValue.value, summary.value, categoryList.value[categoryValue.value])
+                        DealStore.addCountIncome()
+                        return balanceStore.addBalance(summary.value)
+                    }
                 }
+                return alert('Нельзя оставлять пустое название')
             }
 
             const popupHandlerCategory = ref(false)

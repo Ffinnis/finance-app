@@ -1,10 +1,8 @@
 <template>
-    <div class="container">
-        <h1>Ваши расходы</h1>
-        <FilterComponent @filter="filteredList = $event" type="costs"/>
-        <NewDealComponent type="costs"/>
-        <DealListComponent v-show="dealStore.costsList.length > 0" :listOfDeal="filteredList.length > 0 ? filteredList : dealStore.incomeList"/>
-    </div>
+    <h1>Ваши расходы</h1>
+    <FilterComponent @filter="filteredList = $event" type="costs"/>
+    <NewDealComponent type="costs"/>
+    <DealListComponent v-show="dealStore.costsList.length > 0" :listOfDeal="filteredList.length > 0 ? filteredList : dealStore.costsList"/>
 </template>
 
 <script>

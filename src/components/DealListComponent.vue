@@ -18,21 +18,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="income in dealList" :key="income.id">
+            <tr v-for="item in listOfDeal" :key="item.id+item.name">
                 <th>
-                    {{income.name}}
+                    {{item.name}}
                 </th>
                 <td>
-                    {{income.amount}}
+                    {{item.amount}}
                 </td>
                 <td>
-                    {{income.category.name}}
+                    {{item.category.name}}
                 </td>
                 <td>
-                    {{income.date}}
+                    {{item.date}}
                 </td>
                 <td>
-                    <button class="delete" @click="deleteTransaction(currentRoute, income.id, income.amount)">
+                    <button class="delete" @click="deleteTransaction(currentRoute, item.id, item.amount)">
                         Удалить
                     </button>
                 </td>
@@ -60,15 +60,9 @@
             const router = useRouter()
             const currentRoute = router.currentRoute.value.path.replace(/[\/\\]/g,'')
 
-            const dealList = computed(() => {
-                if(currentRoute === 'income') {
-                    return dealStore.incomeList
-                }
-                return dealStore.costsList
-            })
-
 
             const deleteTransaction = (type: string, id: number, amount: number): void => {
+                console.log(type, id)
                 if (type === 'costs') {
                     dealStore.deleteCost(id)
                     balanceStore.addBalance(amount)
@@ -80,7 +74,7 @@
             }
 
             return {
-                dealStore, deleteTransaction, currentRoute, dealList
+                dealStore, deleteTransaction, currentRoute
             }
         }
     }
