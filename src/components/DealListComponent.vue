@@ -46,7 +46,6 @@
     import {useDealsStore} from "../store/dealsStore";
     import {useBalanceStore} from "../store/balanceStore";
     import {useRouter} from "vue-router";
-    import {computed} from 'vue'
 
     export default {
         name: "DealListComponent",

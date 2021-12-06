@@ -1,5 +1,6 @@
 <template>
-    <select name="sort" id="sort">
+    <label>
+        <select @change="$emit('change', sortBy)" v-model="sortBy" name="sort" id="sort">
         <option selected value="date">
             По дате
         </option>
@@ -9,15 +10,20 @@
         <option value="name">
             По названию
         </option>
-    </select>
+    </select></label>
 </template>
 
 <script>
+    import {ref} from "vue";
+
     export default {
         name: "SortFilterComponent",
+        emits: ['change'],
         setup() {
-            return {
+            const sortBy = ref('')
 
+            return {
+                sortBy
             }
         }
     }
