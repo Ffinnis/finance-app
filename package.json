@@ -4,6 +4,7 @@
   "scripts": {
     "serve": "vite preview",
     "build": "vue-tsc --noEmit && vite build",
+    "badBuild": "vite build",
     "test": "vue-cli-service test:unit",
     "dev": "vite"
   },

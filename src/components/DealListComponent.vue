@@ -18,40 +18,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-if="type === 'costs'" v-for="cost in dealStore.costsList" :key="cost.id">
+            <tr v-for="item in listOfDeal" :key="item.id+item.name">
                 <th>
-                    {{cost.name}}
+                    {{item.name}}
                 </th>
                 <td>
-                    {{cost.amount}}
+                    {{item.amount}}
                 </td>
                 <td>
-                    {{cost.category.name}}
+                    {{item.category.name}}
                 </td>
                 <td>
-                    {{cost.date}}
+                    {{item.date}}
                 </td>
                 <td>
-                    <button class="delete" @click="deleteTransaction('costs', cost.id, cost.amount)">
-                        Удалить
-                    </button>
-                </td>
-            </tr>
-            <tr v-if="type === 'income'" v-for="income in dealStore.incomeList" :key="income.id">
-                <th>
-                    {{income.name}}
-                </th>
-                <td>
-                    {{income.amount}}
-                </td>
-                <td>
-                    {{income.category.name}}
-                </td>
-                <td>
-                    {{income.date}}
-                </td>
-                <td>
-                    <button class="delete" @click="deleteTransaction('income', income.id, income.amount)">
+                    <button class="delete" @click="deleteTransaction(currentRoute, item.id, item.amount)">
                         Удалить
                     </button>
                 </td>
@@ -64,17 +45,24 @@
 <script lang="ts">
     import {useDealsStore} from "../store/dealsStore";
     import {useBalanceStore} from "../store/balanceStore";
+    import {useRouter} from "vue-router";
+    import {computed} from 'vue'
 
     export default {
         name: "DealListComponent",
         props: {
-            type: String,
+            listOfDeal: Array
         },
         setup() {
             const dealStore = useDealsStore()
             const balanceStore = useBalanceStore()
 
+            const router = useRouter()
+            const currentRoute = router.currentRoute.value.path.replace(/[\/\\]/g,'')
+
+
             const deleteTransaction = (type: string, id: number, amount: number): void => {
+                console.log(type, id)
                 if (type === 'costs') {
                     dealStore.deleteCost(id)
                     balanceStore.addBalance(amount)
@@ -86,7 +74,7 @@
             }
 
             return {
-                dealStore, deleteTransaction
+                dealStore, deleteTransaction, currentRoute
             }
         }
     }

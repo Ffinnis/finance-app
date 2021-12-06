@@ -99,18 +99,20 @@ export const useDealsStore = defineStore('dealsStore', {
         },
 
         deleteCost(id: number) {
-            this.costsList.find(cost => {
-                if (cost.id === id) {
-                    this.costsList.splice(this.costsList.indexOf(cost), 1)
-                }
+            const el = this.costsList.findIndex((cost) => {
+                return cost.id === id
             })
+            if(el !== -1) {
+                return this.costsList.splice(el, 1)
+            }
         },
         deleteIncome(id: number) {
-            this.incomeList.find(income => {
-                if (income.id === id) {
-                    this.incomeList.splice(this.incomeList.indexOf(income), 1)
-                }
+            const el = this.incomeList.findIndex((income) => {
+                return income.id === id
             })
+            if(el !== -1) {
+                return this.incomeList.splice(el, 1)
+            }
         },
     }
 })

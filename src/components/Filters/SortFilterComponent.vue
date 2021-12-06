@@ -14,7 +14,12 @@
 
 <script>
     export default {
-        name: "SortFilterComponent"
+        name: "SortFilterComponent",
+        setup() {
+            return {
+
+            }
+        }
     }
 </script>
 

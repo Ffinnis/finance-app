@@ -1,19 +1,34 @@
 <template>
     <div class="name-filter">
         <label for="filter-name"></label>
-        <input id="filter-name" class="name-filter-input" v-model="filterName" placeholder="Введите название транзакции" type="text">
+        <input @input="$emit('filter', filterTransactionList())" id="filter-name" class="name-filter-input" v-model="filterName" placeholder="Введите название транзакции" type="text">
     </div>
 </template>
 
 <script>
-    import { ref } from 'vue'
+    import {ref} from 'vue'
+    import {useDealsStore} from "@/store/dealsStore";
+
     export default {
         name: "NameFilterComponent",
-        setup() {
+        props: {
+            type: String
+        },
+        emits: ['filter'],
+        setup(props) {
             const filterName = ref('')
+            const dealsStore = useDealsStore()
+
+            const transactionList = props.type === 'costs' ? dealsStore.costsList : dealsStore.incomeList
+
+            const filterTransactionList = () => {
+                return transactionList.filter(item => {
+                    return item.name.toLowerCase().includes(filterName.value)
+                })
+            } //TODO O(n^2) is the worst solution
 
             return {
-                filterName
+                filterName, transactionList, filterTransactionList
             }
         }
     }
