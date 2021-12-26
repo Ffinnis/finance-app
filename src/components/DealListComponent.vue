@@ -95,10 +95,6 @@
     tbody tr{
         border: 20px solid transparent;
     }
-    .delete{
-        cursor: pointer;
-        color: red
-    }
     .input-delete{
         display: none
     }

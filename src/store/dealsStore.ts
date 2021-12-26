@@ -114,5 +114,24 @@ export const useDealsStore = defineStore('dealsStore', {
                 return this.incomeList.splice(el, 1)
             }
         },
+    },
+    getters: {
+        getCostsByType: (state) => {
+            return state.costsList.reduce((prev, curr) => {
+                
+            })
+        },
+        sumOfCosts: (state) => {
+            const amountArray = state.costsList.map((item: Number) => item.amount)
+            return amountArray.reduce((prev, curr) => {
+                return prev+curr
+            })
+        },
+        sumOfIncomes: (state) => {
+            const amountArray = state.incomeList.map((item: Number) => item.amount)
+            return amountArray.reduce((prev, curr) => {
+                return prev+curr
+            })
+        }
     }
 })
