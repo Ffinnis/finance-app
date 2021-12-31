@@ -1,8 +1,8 @@
 <template>
     <div class="filters">
-        <NameFilterComponent :type="type" @filter="filterHandler($event)"/>
-        <SortFilterComponent />
-        <CategoryFilterComponent :type="type"/>
+        <NameFilterComponent :transactionList="filteredList" :type="type" @filter="filterHandler($event)"/>
+        <SortFilterComponent :transactionList="filteredList" :type="type" @filter="filterHandler($event)"/>
+        <CategoryFilterComponent :transactionList="filteredList" :type="type" @filter="filterHandler($event)"/>
     </div>
 </template>
 
