@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "apexcharts": "^3.32.0",
+    "lodash": "^4.17.21",
     "pinia": "^2.0.0-rc.6",
     "vue": "^3.2.6",
     "vue-router": "^4.0.11",
