@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "serve": "vite preview",
-    "build": "vue-tsc --noEmit && vite build",
-    "badBuild": "vite build",
+    "build": "vite build",
+    "deploy": "sh deploy.sh",
     "test": "vue-cli-service test:unit",
     "dev": "vite"
   },

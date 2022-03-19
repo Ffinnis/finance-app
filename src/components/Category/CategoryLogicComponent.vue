@@ -1,7 +1,7 @@
 <template>
     <div class="name-input">
         <label for="name">Введите название категории</label>
-        <input v-model="categoryName" id="name" name="name" type="text">
+        <input class="input" v-model="categoryName" id="name" name="name" type="text">
     </div>
     <div class="type-input">
         <label>
@@ -13,7 +13,7 @@
             Доходы
         </label>
     </div>
-    <button @click="addCategory">
+    <button class="danger-btn" @click="addCategory">
         Добавить категорию
     </button>
 </template>
@@ -46,5 +46,14 @@
 </script>
 
 <style scoped>
-
+.name-input, .type-input{
+    margin: 20px 0;
+}
+.danger-btn{
+    margin: 0 20px 0 0;
+}
+.input{
+    padding: 8px 12px;
+    margin: 0 0 0 10px;
+}
 </style>

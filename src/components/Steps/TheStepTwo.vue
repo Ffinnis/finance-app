@@ -3,7 +3,7 @@
         Добавьте нужные категории для комфортной работы
     </h3>
     <CategoryLogicComponent />
-    <button @click="submitStepTwo">
+    <button class="primary-btn" @click="submitStepTwo">
         Далее
     </button>
 </template>

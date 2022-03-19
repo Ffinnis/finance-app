@@ -1,8 +1,8 @@
 <template>
     <div class="diagrams">
-        <apexchart width="380" type="donut" :options="diagramDoughnutOptions" :series="diagramDoughnutSeries" />
-        <apexchart type="bar" :series="diagramCostsDateSeries" :options="diagramCostsDateOptions"/>
-        <apexchart type="bar" :series="diagramIncomesDateSeries" :options="diagramIncomesDateOptions"/>
+        <apexchart v-if="incomesByDate.length || costsByDate.length" width="380" type="donut" :options="diagramDoughnutOptions" :series="diagramDoughnutSeries" />
+        <apexchart v-if="costsByDate.length" type="bar" :series="diagramCostsDateSeries" :options="diagramCostsDateOptions"/>
+        <apexchart v-if="incomesByDate.length"  type="bar" :series="diagramIncomesDateSeries" :options="diagramIncomesDateOptions"/>
     </div>
 </template>
 
@@ -93,7 +93,9 @@
             }
 
             return {
-                balanceStore, diagramDoughnutOptions, diagramDoughnutSeries, diagramCostsDateSeries, diagramCostsDateOptions, diagramIncomesDateSeries, diagramIncomesDateOptions
+                balanceStore, diagramDoughnutOptions, diagramDoughnutSeries,
+                diagramCostsDateSeries, diagramCostsDateOptions, diagramIncomesDateSeries, diagramIncomesDateOptions,
+                incomesByDate, costsByDate
             }
         }
     }
