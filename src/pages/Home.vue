@@ -7,6 +7,7 @@
             <h2>
                 Ваш баланс равен <span class="balance-count">{{balanceStore.balance}}₽</span>
             </h2>
+            <HomeDiagrams />
         </div>
     </div>
 </template>
@@ -15,10 +16,11 @@
     import TheStepOne from "@/components/Steps/TheStepOne.vue";
     import {useStepStore} from "@/store/stepStore";
     import TheStepTwo from "@/components/Steps/TheStepTwo.vue";
+    import HomeDiagrams from "@/components/Diagrams/HomeDiagrams.vue";
     import {useBalanceStore} from "@/store/balanceStore";
     export default {
         name: "Home",
-        components: {TheStepTwo, TheStepOne},
+        components: {HomeDiagrams, TheStepTwo, TheStepOne},
         setup() {
             const stepStore = useStepStore()
             const balanceStore = useBalanceStore()

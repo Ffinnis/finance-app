@@ -1,5 +1,6 @@
-import { defineStore } from 'pinia'
-import {dealTypes, categoryDealTypes} from "../interfaces/dealTypes.interface";
+import {defineStore} from 'pinia'
+import {categoryDealTypes, dealTypes} from "../interfaces/dealTypes.interface";
+import _ from 'lodash';
 
 export const useDealsStore = defineStore('dealsStore', {
     state: () => ({
@@ -114,5 +115,36 @@ export const useDealsStore = defineStore('dealsStore', {
                 return this.incomeList.splice(el, 1)
             }
         },
+    },
+    getters: {
+        getCostsSumByCategory: (state) => {
+            return _(state.costsList).groupBy('category.name')
+                .map(function(v, k) { return { name: k, amount: _.sumBy(v, 'amount') } })
+                .value();
+        },
+        sumOfCosts: (state) => {
+            const amountArray = state.costsList.map((item: Number) => item.amount)
+            if(amountArray.length) {
+                return amountArray.reduce((prev, curr) => {
+                    return prev+curr
+                })
+            }
+        },
+        sumOfIncomes: (state) => {
+            const amountArray = state.incomeList.map((item: Number) => item.amount)
+            if(amountArray.length) {
+                return amountArray.reduce((prev, curr) => {
+                    return prev+curr
+                })
+            }
+        },
+        getCostsByDate: (state) => {
+            return _(state.costsList).groupBy('date').map((v, k) => { return { date: k, amount: _.sumBy(v, 'amount') } })
+                .value();
+        },
+        getIncomesByDate: (state) => {
+            return _(state.incomeList).groupBy('date').map((v, k) => { return { date: k, amount: _.sumBy(v, 'amount') } })
+                .value();
+        }
     }
 })
