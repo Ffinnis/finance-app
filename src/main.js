@@ -3,7 +3,8 @@ import App from './App.vue'
 import { createPinia } from 'pinia'
 import router from './router/index.js'
 import 'vfonts/Lato.css'
-import './styles/style.css'
+import './styles/reset.scss'
+import './styles/style.scss'
 import VueApexCharts from "vue3-apexcharts";
 import 'vfonts/FiraCode.css'
 

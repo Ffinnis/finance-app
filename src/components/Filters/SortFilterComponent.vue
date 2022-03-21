@@ -1,5 +1,5 @@
 <template>
-    <select @change="$emit('filter', filterTransactionList)" v-model="sortType" name="sort" id="sort">
+    <select class="input" @change="$emit('filter', filterTransactionList)" v-model="sortType" name="sort" id="sort">
         <option value="default">
             Стандартно
         </option>

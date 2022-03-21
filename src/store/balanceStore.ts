@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useBalanceStore = defineStore('useBalanceStore', {
     state: () => ({
-        balance: Number(localStorage.getItem("userBalance")) || 0
+        balance: Number(localStorage.getItem("balance")) || 0
     }),
     actions: {
         setBalance(number: number): number {

@@ -32,12 +32,17 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .filters{
         display: flex;
         align-items: center;
         justify-content: space-between;;
         max-width: 800px;
         margin: 10px auto;
+        padding: 0 15px;
+        @media(max-width: 768px) {
+            flex-direction: column;
+            gap: 20px;
+        }
     }
 </style>
