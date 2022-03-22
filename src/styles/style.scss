@@ -1,10 +1,7 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap');
+
 #app {
-    font-family: 'Lato', "Fira Code", sans-serif;
+    font-family: 'Fredoka', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -19,18 +16,6 @@ ul{
 .container{
     max-width: 1220px;
     margin: 0 auto;
-}
-.popup-wrapper{
-    position: fixed;
-    padding: 45px 100px;
-    background: #FFF;
-    z-index: 20;
-    -webkit-box-shadow: 0px 8px 18px 0px rgb(34 60 80 / 20%);
-    -moz-box-shadow: 0px 8px 18px 0px rgba(34, 60, 80, 0.2);
-    box-shadow: 0px 8px 18px 0px;
-    animation-name: showPopup;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
 }
 .popup--close{
     animation-name: showPopup;
@@ -63,23 +48,19 @@ button, select{
     cursor: pointer;
 }
 .secondary-btn{
-    border: 2px solid rgba(17, 17, 17, 0.48);
     border-radius: 4px;
     padding: 10px;
-    background: #fff;
+    color: #fff;
+    background-color: #2196f3;
     transition: all 0.15s linear;
-}
-.secondary-btn:hover{
-    background: rgba(110, 65, 226, 0.04);
-    border: 2px solid #6E41E2;
-}
-.secondary-btn:active{
-    background: rgba(110, 65, 226, 0.16);
-    border: 2px solid #6e41e2;
-}
-.secondary-btn:focus{
-    border: 2px solid #532cb7;
-    background: rgba(110, 65, 226, 0.16);
+    border: none;
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    &:hover {
+        background-color: #1d81d1;
+    }
+    &:focus {
+        background-color: #176aae;
+    }
 }
 .danger-btn {
     background: #d54141;
@@ -91,17 +72,17 @@ button, select{
     font-size: 16px;
     line-height: 24px;
     transition: 0.1s linear;
+    &:hover{
+        background: #a83030;
+    }
+    &:active{
+        background: #792222;
+    }
+    &:focus{
+        border: 2px solid rgba(17, 17, 17, 0.48);
+    }
 }
-.danger-btn:hover{
-    background: #a83030;
-}
-.danger-btn:active{
-    background: #792222;
-}
-.danger-btn:focus{
-    border: 2px solid rgba(17, 17, 17, 0.48);
-}
-input{
+input {
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 16px rgba(51, 51, 51, 0.08);
     border-radius: 4px;
@@ -111,20 +92,14 @@ input{
     color: rgba(17, 17, 17, 0.48);
     transition: all 0.45s ease-in;
     outline: none;
-}
-.name-filter-input:hover{
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 56px rgba(51, 51, 51, 0.16);
-}
-.name-filter-input:focus{
-    color: #111111;
-    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 16px rgba(51, 51, 51, 0.08);
-}
-@keyframes showPopup {
-    from{
-        top: -9000px;
+
+    &:hover {
+        box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 56px rgba(51, 51, 51, 0.16);
     }
-    to{
-        top: 60px
+
+    &:focus {
+        color: #111111;
+        box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 16px rgba(51, 51, 51, 0.08);
     }
 }
 
@@ -135,4 +110,32 @@ input{
     border: none;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.input{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 16px rgba(51, 51, 51, 0.08);
+    border-radius: 4px;
+    border: none;
+    color: rgba(17, 17, 17, 0.48);
+    font-size: 16px;
+    line-height: 24px;
+    padding: 16px;
+    transition: box-shadow 0.45s ease-in, color 0.1s linear;
+    outline: none;
+    min-width: 250px;
+    &:focus{
+        box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 24px rgba(51, 51, 51, 0.24);
+        color: #111111;
+    }
+    &:hover{
+        box-shadow: 0px 4px 4px rgba(51, 51, 51, 0.04), 0px 4px 24px rgba(51, 51, 51, 0.24);
+    }
+    @media(max-width: 768px) {
+        width: 75%;
+    }
+}
+
+.row{
+    display: flex;
 }
