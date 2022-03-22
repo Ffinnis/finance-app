@@ -1,42 +1,57 @@
 <template>
-  <v-popup :title="title" :isShow="isShow">
-    <div class="v-popup__inner__inputs">
-      <div class="row">
-        <v-select
-          name="category"
-          placeholder="Категория"
-          :options="categoryList"
-          option-title="name"
-          option-value="name"
-          @select="selectCategoryHandler($event)"
-        />
-        <button class="secondary-btn">Создать новую категорию</button>
+  <div>
+    <v-popup
+      @close="$emit('close')"
+      v-show="!isCategoryPopupOpen"
+      :title="title"
+      :isShow="isShow"
+    >
+      <div class="v-popup__inner__inputs">
+        <div class="row">
+          <v-select
+            name="category"
+            placeholder="Категория"
+            :options="categoryList"
+            option-title="name"
+            option-value="name"
+            @select="selectCategoryHandler($event)"
+          />
+          <button @click="isCategoryPopupOpen = true" class="secondary-btn">
+            Создать новую категорию
+          </button>
+        </div>
+        <div style="margin: 20px 0 0" class="row">
+          <datepicker utc position="center" v-model="transactionDate" />
+        </div>
+        <div style="margin: 20px 0 0" class="row">
+          <v-input
+            label="Введите название операции"
+            name="transactionName"
+            placeholder="Операция"
+            type="text"
+            @input-value="transactionNameHandler"
+          />
+          <v-input
+            :label="transactionText"
+            name="transactionAmount"
+            type="number"
+            @input-value="transactionAmountHandler"
+          />
+        </div>
+        <div style="justify-content: center; margin: 30px 0 0" class="row">
+          <button @click="confirmTransaction" class="primary-btn">
+            Добавить
+          </button>
+        </div>
       </div>
-      <div style="margin: 20px 0 0" class="row">
-        <datepicker utc position="center" v-model="transactionDate" />
-      </div>
-      <div style="margin: 20px 0 0" class="row">
-        <v-input
-          label="Введите название операции"
-          name="transactionName"
-          placeholder="Операция"
-          type="text"
-          @input-value="transactionNameHandler"
-        />
-        <v-input
-          :label="transactionText"
-          name="transactionAmount"
-          type="number"
-          @input-value="transactionAmountHandler"
-        />
-      </div>
-      <div style="justify-content: center; margin: 30px 0 0" class="row">
-        <button @click="confirmTransaction" class="primary-btn">
-          Добавить
-        </button>
-      </div>
-    </div>
-  </v-popup>
+    </v-popup>
+    <teleport to="body">
+      <category-popup
+        @close="isCategoryPopupOpen = false"
+        :is-show="isCategoryPopupOpen"
+      />
+    </teleport>
+  </div>
 </template>
 
 <script lang="ts">
@@ -44,6 +59,7 @@ import Datepicker from "@vuepic/vue-datepicker";
 import VPopup from "./UI/VPopup.vue";
 import VSelect from "./UI/VSelect.vue";
 import VInput from "./UI/VInput.vue";
+import CategoryPopup from "./CategoryPopup.vue";
 import { notify } from "@kyvg/vue3-notification";
 import { useRoute } from "vue-router";
 import { useDealsStore } from "@/store/dealsStore";
@@ -52,7 +68,7 @@ import date from "date-and-time";
 import "@vuepic/vue-datepicker/dist/main.css";
 export default {
   name: "TransactionPopup",
-  components: { VPopup, VSelect, VInput, Datepicker },
+  components: { CategoryPopup, VPopup, VSelect, VInput, Datepicker },
   props: {
     title: String,
     isShow: Boolean,
@@ -72,6 +88,7 @@ export default {
         : "Введите сумму потраченных средств"
     );
 
+    const isCategoryPopupOpen = ref(false);
     const selectedCategory = ref({});
     const transactionName = ref("");
     const transactionAmount = ref(0);
@@ -128,6 +145,7 @@ export default {
       transactionAmountHandler,
       confirmTransaction,
       transactionDate,
+      isCategoryPopupOpen,
     };
   },
 };
