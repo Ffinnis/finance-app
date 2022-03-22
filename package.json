@@ -9,7 +9,10 @@
     "dev": "vite"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^2.3.4",
+    "@vuepic/vue-datepicker": "^3.0.0",
     "apexcharts": "^3.32.0",
+    "date-and-time": "^2.3.0",
     "lodash": "^4.17.21",
     "pinia": "^2.0.0-rc.6",
     "vue": "^3.2.6",

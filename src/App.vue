@@ -1,15 +1,14 @@
 <script>
-  import NavigationComponent from "./components/NavigationComponent.vue";
-  export default {
-    components: {NavigationComponent},
-  }
+import NavigationComponent from "./components/NavigationComponent.vue";
+export default {
+  components: { NavigationComponent },
+};
 </script>
 
 <template>
-  <NavigationComponent/>
-  <router-view/>
+  <notifications />
+  <NavigationComponent />
+  <router-view />
 </template>
 
-<style>
-
-</style>
+<style></style>

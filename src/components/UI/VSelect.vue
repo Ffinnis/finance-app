@@ -74,13 +74,14 @@ export default {
     }
     &__dropdown {
       position: absolute;
-      top: 100%;
+      top: calc(100% + 10px);
       left: 0;
       width: 100%;
       border-radius: 4px;
       background: #ffffff;
       box-shadow: 0px 19px 14px 4px rgba(34, 60, 80, 0.2);
       transform-origin: top;
+      z-index: 3;
       &__item {
         padding: 8px 12px;
         cursor: pointer;
@@ -95,11 +96,11 @@ export default {
 }
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 .dropdown-enter-from,
 .dropdown-leave-to {
-  transform: scaleY(0);
+  transform: scaleY(0) translateY(-50px);
 }
 </style>

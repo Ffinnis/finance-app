@@ -48,23 +48,19 @@ button, select{
     cursor: pointer;
 }
 .secondary-btn{
-    border: 2px solid rgba(17, 17, 17, 0.48);
     border-radius: 4px;
     padding: 10px;
-    background: #fff;
+    color: #fff;
+    background-color: #2196f3;
     transition: all 0.15s linear;
-}
-.secondary-btn:hover{
-    background: rgba(110, 65, 226, 0.04);
-    border: 2px solid #6E41E2;
-}
-.secondary-btn:active{
-    background: rgba(110, 65, 226, 0.16);
-    border: 2px solid #6e41e2;
-}
-.secondary-btn:focus{
-    border: 2px solid #532cb7;
-    background: rgba(110, 65, 226, 0.16);
+    border: none;
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    &:hover {
+        background-color: #1d81d1;
+    }
+    &:focus {
+        background-color: #176aae;
+    }
 }
 .danger-btn {
     background: #d54141;
@@ -138,4 +134,8 @@ input {
     @media(max-width: 768px) {
         width: 75%;
     }
+}
+
+.row{
+    display: flex;
 }
