@@ -4,9 +4,9 @@
   "scripts": {
     "serve": "vite preview",
     "build": "vite build",
-    "deploy": "sh deploy.sh",
     "test": "vue-cli-service test:unit",
-    "dev": "vite"
+    "dev": "vite",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@kyvg/vue3-notification": "^2.3.4",

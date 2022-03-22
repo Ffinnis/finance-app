@@ -5,7 +5,7 @@ import Costs from "../pages/Costs.vue";
 
 const routes = [
   {
-    path: "/finance-app",
+    path: process.env.NODE_ENV === "production" ? "/finance-app" : "/",
     name: "Home",
     component: Home,
   },

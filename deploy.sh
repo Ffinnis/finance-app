@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
 set -e
-git checkout gh-pages
 npm run build
-git add dist -f
-git commit -m "deploy"
-git subtree push --prefix dist origin gh-pages
+cd dist
+git init
+git add -A
+git commit -m "new deploy"
+git push -f git@github.com:Ffinnis/finance-app.git master:gh-pages
+
+cd -
